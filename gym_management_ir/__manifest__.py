@@ -6,6 +6,8 @@
     'depends': ['base','mail','sale','hr','purchase'],
     'author':"Inayat Rasool",
     'description': "this is Gym Management module",
+    'price': '20.0',
+    'currency': 'USD',
     'data': [
             "security/ir.model.access.csv",
             "security/user_role_group.xml",
