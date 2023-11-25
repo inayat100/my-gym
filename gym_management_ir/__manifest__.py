@@ -46,7 +46,7 @@
              "view/member_analysis_view.xml",
             ],
             'license': 'LGPL-3',
-	'images': ['static/description/Banner.png'],
+	'images': ['static/description/banner.png'],
     
     'installable': True,
     'application': True,
