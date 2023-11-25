@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="member_card_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="header" style="margin:0%;">
+                </div>
+            </t>
+        </t>
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="row">
+                        <div style="width: 350px; height: 600px; border: 1px solid black; margin: 5px; padding-left: 10px;">
+                            <div style="margin-top: 20%; text-align: center;">
+                                <img src="gym_management/static/src/img/logo.png" style="max-height: 120px;" />
+                            </div>
+                            <div style="width: 100%; text-align: center;">
+                                <t t-if="o.image">
+                                    <img t-att-src="image_data_uri(o.image)"
+                                        style="width: 150px;  border-radius: 50%; margin-top: 10%; border: 1px solid black; padding: 2px;" />
+                                </t>
+                            </div>
+                            <h3 style="margin-top: 10%; font-weight: 600; text-align: center;">
+                                <span t-field="o.name" />
+                            </h3>
+                            <table class="table-borderless" style=" width: 100%;">
+                                <tr>
+                                    <td style="width: 30%;">
+                                        Trainer Id
+                                    </td>
+                                    <td style="width: 10%; text-align: center;">
+                                        :
+                                    </td>
+                                    <td style="width: 50%;">
+                                        <span t-field="o.sequence_no" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 30%;">
+                                        Gender
+                                        <!-- <span t-esc="request.env.user.name"/> -->
+                                    </td>
+                                    <td style="width: 10%; text-align: center;">
+                                        :
+                                    </td>
+                                    <td style="width: 50%;">
+                                         <span t-field="o.gender" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 30%;">
+                                        Membership
+                                    </td>
+                                    <td style="width: 10%; text-align: center;">
+                                        :
+                                    </td>
+                                    <td style="width: 50%;">
+                                         <span t-field="o.membership_id.name" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 30%;">
+                                        Trainer
+                                    </td>
+                                    <td style="width: 10%; text-align: center;">
+                                        :
+                                    </td>
+                                    <td style="width: 50%;">
+                                         <span t-field="o.trainer_id.name" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 30%;">
+                                        Email
+                                    </td>
+                                    <td style="width: 10%; text-align: center;">
+                                        :
+                                    </td>
+                                    <td style="width: 50%;">
+                                         <span t-field="o.email" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 30%;">
+                                        Mobile
+                                    </td>
+                                    <td style="width: 10%; text-align: center;">
+                                        :
+                                    </td>
+                                    <td style="width: 50%;">
+                                         <span t-field="o.phone" />
+                                    </td>
+                                </tr>
+                            </table>
+
+                           
+                        </div>
+                        <div
+                            style="width: 350px; height: 600px; text-align: center; border: 1px solid black; margin: 5px;">
+                            <div style="margin-top: 20%;">
+                                <img src="gym_management/static/src/img/logo.png" style="max-height: 120px;" />
+                            </div>
+                            <h3 style="margin-top: 10%; font-weight: 600; text-align: center;">Trainer Address</h3>
+                            <span t-field="o.street" />
+                            <br />
+                            <span t-field="o.city" />
+                            <br />
+                            <span t-field="o.zip" />
+                            <br />
+                            <span t-field="o.state_id" />
+                            <br />
+                            <span t-field="o.country_id" />
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

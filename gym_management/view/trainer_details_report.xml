@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="trainer_details_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <div style="text-align: right;">
+                            <h3 style="margin:5%; display: inline-block; font-weight: 600;">
+                                <span t-field="o.name" />
+                            </h3>
+                            <div style="display: inline-block;">
+                                <t t-if="o.image">
+                                    <img t-att-src="image_data_uri(o.image)"
+                                        style="width: 150px;  border-radius: 50%; text-align: right; border: 1px solid black; padding: 2px;" />
+                                </t>
+                            </div>
+                        </div>
+                        <div class="row" style="width: 100%;">
+                            <div style="width: 50%;">
+                                <div class="row" style="padding: 5px;">
+                                    <div style="width: 100px;">
+                                        <span> Trainer Id</span>
+                                    </div>
+                                    <div style="width: 20px; text-align: center;">
+                                        <span>:</span>
+                                    </div>
+                                    <div>
+                                        <span t-field="o.sequence_no" />
+                                    </div>
+                                </div>
+                                <div class="row" style="padding: 5px;">
+                                    <div style="width: 100px;">
+                                        <span>Gender</span>
+                                    </div>
+                                    <div style="width: 20px; text-align: center;">
+                                        <span>:</span>
+                                    </div>
+                                    <div>
+                                        <span t-field="o.gender" />
+                                    </div>
+                                </div>
+                                <div class="row" style="padding: 5px;">
+                                    <div style="width: 100px;">
+                                        <span>Age</span>
+                                    </div>
+                                    <div style="width: 20px; text-align: center;">
+                                        <span>:</span>
+                                    </div>
+                                    <div>
+                                        <span t-field="o.age" />
+                                    </div>
+                                </div>
+                                <div class="row" style="padding: 5px;">
+                                    <div style="width: 100px;">
+                                        <span>Addess</span>
+                                    </div>
+                                    <div style="width: 20px; text-align: center;">
+                                        <span>:</span>
+                                    </div>
+                                    <div>
+                                        <span t-field="o.street" />
+                                        <span t-field="o.city" />
+                                        <br />
+                                        <span t-field="o.zip" />
+                                        <span t-field="o.state_id" />
+                                        <span t-field="o.country_id" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="width: 50%;">
+                                <div class="row" style="padding: 5px;">
+                                    <div style="width: 100px;">
+                                        <span>Join Date</span>
+                                    </div>
+                                    <div style="width: 20px; text-align: center;">
+                                        <span>:</span>
+                                    </div>
+                                    <div>
+                                        <span t-field="o.join_date" />
+                                    </div>
+                                </div>
+                                <div class="row" style="padding: 5px;">
+                                    <div style="width: 100px;">
+                                        <span>Mobile</span>
+                                    </div>
+                                    <div style="width: 20px; text-align: center;">
+                                        <span>:</span>
+                                    </div>
+                                    <div>
+                                        <span t-field="o.phone" />
+                                    </div>
+                                </div>
+                                <div class="row" style="padding: 5px;">
+                                    <div style="width: 100px;">
+                                        <span>Email</span>
+                                    </div>
+                                    <div style="width: 20px; text-align: center;">
+                                        <span>:</span>
+                                    </div>
+                                    <div>
+                                        <span t-field="o.email" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 style="margin-top: 5%;">Skills Details</h3>
+                        <div class="row" style="border-bottom: 2px solid black;">
+                            <div style="width: 45%;">
+                                <span style="font-weight: bold;">Skills</span>
+                            </div>
+                            <div style="width: 45%;">
+                                <span style="font-weight: bold;">Exeprience in (Year)</span>
+                            </div>
+                        </div>
+                        <t t-foreach="o.skills" t-as="sk">
+                            <div class="row">
+                                <div style="width: 45%;">
+                                    <span t-field="sk.name" />
+                                </div>
+                                <div style="width: 45%;">
+                                    <span t-field="sk.experience" />
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

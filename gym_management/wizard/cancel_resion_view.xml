@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="cancale_resion_view_form" model="ir.ui.view">
+        <field name="name">cancale_resion.view.form</field>
+        <field name="model">cancel.resion</field>
+        <field name="arch" type="xml">
+            <form string="cancel Special Session">
+                <sheet>
+                    <field name="name" />
+                </sheet>
+                <footer>
+                    <button type="object" name="cancel_resion" string="cancel" class="oe_highlight"/>
+                    <button special="cancel" string="Close Window"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="gym_activity_view_tree" model="ir.ui.view">
+        <field name="name">gym_activity.view.tree</field>
+        <field name="model">gym.activity</field>
+        <field name="arch" type="xml">
+            <tree string="Gym Activity">
+                <field name="member_id" />
+                <field name="date" />
+                <field name="exercise_id" />
+                <field name="equipment_id" />
+                <field name="sets" />
+                <field name="repeat" />
+                <field name="weight" />
+            </tree>
+        </field>
+    </record>
+    <record id="gym_activity_view_form" model="ir.ui.view">
+        <field name="name">gym_activity.view.form</field>
+        <field name="model">gym.activity</field>
+        <field name="arch" type="xml">
+            <form string="Gym Activity">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="member_id" />
+                            <field name="date" />
+                            <field name="exercise_id" />
+                        </group>
+                        <group>
+                            <field name="equipment_id" />
+                            <field name="sets" />
+                            <field name="repeat" />
+                            <field name="weight" />
+                        </group>
+                    </group>
+                </sheet>
+                  <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="gym_activity_view_search" model="ir.ui.view">
+        <field name="name">gym_activity.view.search</field>
+        <field name="model">gym.activity</field>
+        <field name="arch" type="xml">
+            <search string="gym activity Search">
+                <group string="User">
+                    <filter name="member_id" string="Member"  context="{'group_by':'member_id'}" />
+                    <filter name="exercise_id" string="Exercise"  context="{'group_by':'exercise_id'}" />
+                    <filter name="equipment_id" string="Equipment"  context="{'group_by':'equipment_id'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="gym_activity_action" model="ir.actions.act_window">
+        <field name="name">Gym Activity</field>
+        <field name="res_model">gym.activity</field>
+        <field name="view_mode">tree,form,search</field>
+    </record>
+    <menuitem
+    id="gym_activity_menu"
+    name="Gym Activity"
+    action="gym_activity_action"
+    parent="gym_workout_menu"/>
+</odoo>

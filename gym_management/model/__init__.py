@@ -1,0 +1,1 @@
+from .import member,trainer,trainer_skills,membership,body_part,gym_equipment,workout_day,diet_food,consume_at,exercise,workout_plan,diet_plan,gym_activity,special_session,user_role,account_move,res_partner

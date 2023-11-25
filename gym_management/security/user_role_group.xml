@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.module.category" id="user_role_group">                                
+        <field name="name">Other 2</field>                                
+        <field name="description">User access level for this module</field>                                
+        <field name="sequence">1</field>                            
+      </record>
+
+    <record id="manager_group_id" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="gym_management.user_role_group"></field> 
+    </record>
+
+    <record id="member_group_id" model="res.groups">
+        <field name="name">Member</field>
+        <field name="category_id" ref="gym_management.user_role_group"></field> 
+    </record>
+
+    <record id="trainer_group_id" model="res.groups">
+        <field name="name">Trainer</field>
+        <field name="category_id" ref="gym_management.user_role_group"></field> 
+    </record>
+    
+</odoo>

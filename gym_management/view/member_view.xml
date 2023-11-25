@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="member_view_tree" model="ir.ui.view">
+        <field name="name">member.view.tree</field>
+        <field name="model">member</field>
+        <field name="arch" type="xml">
+            <tree string="Member" multi_edit="1">
+                <field name="name" />
+                <field name="gender" />
+                <field name="age" />
+                <field name="join_date" />
+                <field name="end_date" />
+                <field name="due_date" />
+                <field name="panding_amount"/>
+                <field name="status" />
+            </tree>
+        </field>
+    </record>
+    <record id="member_view_form" model="ir.ui.view">
+        <field name="name">member.view.form</field>
+        <field name="model">member</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header>
+                    <button string="Create Membership Invoice" name="create_membership_invoice"
+                        type="object" class="oe_highlight" attrs="{'invisible':[('panding_amount','=',0.0)]}" />
+                    <button string="Membar Left" name="member_left" type="object"
+                        class="oe_highlight" attrs="{'invisible':[('status','=','left')]}" />
+                    <button string="Membar join" name="member_join" type="object"
+                        class="oe_highlight" attrs="{'invisible':[('status','=','joined')]}" />
+                        <field name="is_employee" invisible="1" />
+                    <button string="Create Employee" name="creat_employee"
+                        type="object" attrs="{'invisible':['|',('is_employee','=',True),('id','=',False)]}"/>
+                    <field name="status" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object" name="invoices" class="oe_stat_button" icon="fa-edit">
+                            <field name="invoice_count" widget="statinfo" string="Invoices" />
+                        </button>
+                        <button type="object" name="view_employee" string="Employee" class="oe_stat_button" icon="fa-check" 
+                        attrs="{'invisible':[('is_employee','=',False)]}"/>
+                            
+                    </div>
+
+
+                    <field name="image" class="oe_avatar"  style="width: 100px;" widget="image" />
+                    
+                   <h1 style="width:500px;"> <field name="name" placeholder="Name" required="1"/></h1>
+                    <field name="email" style="width:500px;" placeholder="example@gmail.com" required="1" />
+
+
+                    <group>
+                        <group>
+                            <field name="sequence_no" />
+                            <field name="partner_id" readonly="1"/>
+                            <field name="join_date" />
+                            <field name="end_date" readonly="1" force_save="1"/>
+                            <field name="due_date" readonly="1"/>
+                            <field name="panding_amount" readonly="1" force_save="1"/>
+                            <field name="invoice_ids" invisible="1" />
+                        </group>
+                        <group>
+                            <span class="o_td_label">
+                                <b>Address</b>
+                            </span>
+                            <div class="o_address_format">
+                                <field name="street" placeholder="Street..."
+                                    class="o_address_street" />
+                                <field name="city" placeholder="City" class="o_address_city" />
+                                <field name="state_id" class="o_address_state" placeholder="State" />
+                                <field name="zip" placeholder="ZIP" class="o_address_zip" />
+                                <field name="country_id" placeholder="Country"
+                                    class="o_address_country" />
+                            </div>
+                            <field name="gender" groups="gym_management.manager_group_id"/>
+                            <!-- <field name="gender" groups="gym_management.manager_group_id"/> -->
+                            <field name="dob" />
+                            <field name="age" />
+                            <field name="phone" />
+                            <field name="active" readonly="1" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="Membership" string="Membership">
+                            <group>
+                                <field name="membership_id" />
+                                <field name="fee" />
+                                <field name="trainer_id" domain="[('status','=','joined')]" options="{'no_quick_create': True, 'no_create_edit' : True}" />
+                                <field name="skills" widget="many2many_tags" />
+                            </group>
+                        </page>
+                        <page name="Diet Plan" string="Diet Plan">
+                            <field name="member_Diet_plan_lines">
+                                <tree editable="bottom">
+                                    <field name="diet_plan_id" />
+                                    <field name="from_date" />
+                                    <field name="to_date" />
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="Workout Plan" string="Workout Plan">
+                            <field name="member_workout_plan_lines">
+                                <tree editable="bottom">
+                                    <field name="workout_plan_id" />
+                                    <field name="from_date" />
+                                    <field name="to_date" />
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+
+                    <notebook>
+                        <page name="History" string="History">
+                            <field name="membership_history_lines">
+                                <tree editable="bottom" create="false">
+                                    <field name="date" readonly="1" force_save="1"/>
+                                    <field name="membership_id" readonly="1" force_save="1"/>
+                                    <field name="fees" readonly="1" force_save="1"/>
+                                    <field name="join_date" readonly="1" force_save="1"/>
+                                    <field name="end_date" readonly="1" force_save="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                  <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="member_view_kanban" model="ir.ui.view">
+        <field name="name">member.view.kanban</field>
+        <field name="model">member</field>
+        <field name="arch" type="xml">
+            <kanban string="Member View" class="o_ares_partner_kanban">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div style="width:30%; float:left;">
+                                <field name="image" widget="image" style="width: 100px;" />
+                            </div>
+                            <div style="width:70%; float:right;">
+                                <ul style="list-style-type:none">
+                                    <li>
+                                        <field name="sequence_no" />
+                                    </li>
+                                    <li>
+                                        <field name="name" />
+                                    </li>
+                                    <li>
+                                        <field name="membership_id" />
+                                    </li>
+                                    <li>
+                                        <field name="fee" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="member_view_search" model="ir.ui.view">
+        <field name="name">member.view.search</field>
+        <field name="model">member</field>
+        <field name="arch" type="xml">
+            <search string="Member">
+                <field name="sequence_no" />
+            </search>
+        </field>
+    </record>
+
+    <record id="member_action" model="ir.actions.act_window">
+        <field name="name">Member</field>
+        <field name="res_model">member</field>
+        <field name="view_mode">kanban,tree,form,search</field>
+    </record>
+
+    <record id="member_attendance_action" model="ir.actions.act_window">
+        <field name="name">Member Attendance</field>
+        <field name="res_model">hr.attendance</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('employee_id.user_id.partner_id.is_member', '=', True )]</field>
+    </record>
+
+
+
+</odoo>

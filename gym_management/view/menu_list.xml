@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+    id="gym_management_menu"
+    name="Gym Mnagemant"
+    sequence="1"/>
+
+    <menuitem
+    id="gym_member_menu"
+    name="Gym members"
+    parent="gym_management_menu"
+    sequence="2"/>
+
+    <menuitem
+    id="gym_workout_menu"
+    name="GymWorkout"
+    parent="gym_management_menu"
+    sequence="3"
+    groups="gym_management.manager_group_id"/>
+
+    <menuitem
+    id="diet_menu"
+    name="Diet"
+    parent="gym_management_menu"
+    sequence="4"/>
+    
+    <menuitem
+    id="membership_menu"
+    name="Membership"
+    parent="gym_management_menu"
+    sequence="5"
+    />
+
+    <menuitem
+    id="attendance_menu"
+    name="Attendance"
+    parent="gym_management_menu"
+    sequence="6"/>
+
+    <menuitem
+    id="special_session_menu"
+    name="Special Session"
+    parent="gym_management_menu"
+    sequence="7"/>
+
+    <menuitem
+    id="Reporting_menu"
+    name="Reporting"
+    parent="gym_management_menu"
+    sequence="8"/>
+    
+    <menuitem
+    id="configration_menu"
+    name="Configrations"
+    parent="gym_management_menu"
+    sequence="50"/>
+    
+
+    <menuitem
+    id="employee_attendance_menu"
+    name="All Attendance"
+    action="hr_attendance.hr_attendance_action"
+    parent="attendance_menu"/>
+
+
+       <menuitem
+        id="assign_workout_plan_menu"
+        name="Assign Workout Plan"
+        action="assign_workout_plan_action"
+        parent="gym_workout_menu"/>
+
+      <menuitem
+        id="assign_diet_plan_menu"
+        name="Assign Diet Plan"
+        action="assign_diet_plan_action"
+        parent="diet_menu"/>
+
+
+        <menuitem
+        id="member_menu"
+        name="Member"
+        action="gym_management.member_action"
+        parent="gym_management.gym_member_menu" />
+
+        <menuitem
+        id="member_attendance_menu"
+        name="Member Attendance"
+        action="gym_management.member_attendance_action"
+        parent="gym_management.attendance_menu"/>
+</odoo>

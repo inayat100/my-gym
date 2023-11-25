@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="invoice_membership_amount_view_form" model="ir.ui.view">
+        <field name="name">invoice_membership_amount.view.form</field>
+        <field name="model">how.many.amount</field>
+        <field name="arch" type="xml">
+            <form string="Invoice Pay Amount">
+                <sheet>
+                    <group>
+                        <field name="invoice_type" widget="radio" />
+                        <field name="dua_amount"  attrs="{'invisible':[('invoice_type','=','delivered')]}" readonly="1" force_save="1"/>
+                        <field name="percentage" attrs="{'invisible':[('invoice_type','in',['fixed','delivered'])]}"/>
+                        <field name="amount"  attrs="{'invisible':[('invoice_type','=','delivered')],'readonly':[('invoice_type','=','percentags')]}" force_save="1"/>
+                        <field name="deposit_account_id"  attrs="{'invisible':[('invoice_type','=','delivered')]}"/>
+                        <field name="deposit_tax_id" domain="[('type_tax_use', '=', 'sale')]"  attrs="{'invisible':[('invoice_type','=','delivered')]}"/>
+                        <field name="is_dua_amount" invisible="1" />
+                        <field name="dua_date" attrs="{'invisible':['|',('invoice_type','=','delivered'),('is_dua_amount','=',False)],'required':[('is_dua_amount','=',True)]}"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button type="object" name="create_invoice_and_view" string="Create Invoice And View" class="oe_highlight"/>
+                    <button type="object" name="create_invoice" string="Create Invoice" class="oe_highlight"/>
+                    <button special="cancel" string="Close Window"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

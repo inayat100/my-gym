@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report id="trainer_card_report" string="Trainer Card"
+model="trainer" name="gym_management.trainer_card_template"
+file="trainer-card" report_type="qweb-pdf"/>
+
+
+<report id="member_card_report" string="Member Card"
+model="member" name="gym_management.member_card_template"
+file="member-card" report_type="qweb-pdf"/>
+
+
+<report id="member_details_report" string="Member Details"
+model="member" name="gym_management.member_details_template"
+file="member-details" report_type="qweb-pdf"/>
+
+<report id="trainer_details_report" string="Trainer Details"
+model="trainer" name="gym_management.trainer_details_template"
+file="trainer-details" report_type="qweb-pdf"/>
+
+<report id="diet_plan_report" string="Diet Plan"
+model="assign.diet.plan" name="gym_management.diet_plan_template"
+file="diet-plan" report_type="qweb-pdf"/>
+
+</odoo>

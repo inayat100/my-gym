@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="trainer_sequence" model="ir.sequence">
+        <field name="name">Trainer Sequence Number</field>
+        <field name="code">trainer</field>
+        <field name="prefix">Trainer</field>
+        <field name="padding">5</field>
+        <field name="number_increment">1</field>
+    </record>
+
+    <record id="member_sequence" model="ir.sequence">
+        <field name="name">Member Sequence Number</field>
+        <field name="code">member</field>
+        <field name="prefix">Member</field>
+        <field name="padding">5</field>
+        <field name="number_increment">1</field>
+    </record>
+   
+</odoo>

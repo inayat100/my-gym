@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="diet_plan_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h3 style="text-align: center;"><span t-field="o.diet_plan_id.name"/></h3>
+                        
+                        <h4>Diet List</h4>
+                        <div class="row">
+                            <div style="width: 30%;"><strong>Diet Food</strong></div>
+                            <div style="width: 30%;"><strong>Quantity</strong></div>
+                            <div style="width: 30%;"><strong>Consume At</strong></div>  
+                        </div>
+                        <t t-foreach="o.diet_plan_id.diet_plan_line" t-as="l">
+                        <div class="row">
+                            <div style="width: 30%;"><span t-field="l.diet_food_id.name"/></div>
+                            <div style="width: 30%;"><span t-field="l.quantity"/></div>
+                            <div style="width: 30%;"><span t-field="l.consume_at.name"/></div>  
+                        </div>
+                        </t>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="gym_equipment_view_tree" model="ir.ui.view">
+        <field name="name">gym_equipment.view.tree</field>
+        <field name="model">gym.equipment</field>
+        <field name="arch" type="xml">
+            <tree string="Gym Equipment">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+    <record id="gym_equipment_view_form" model="ir.ui.view">
+        <field name="name">gym_equipment.view.form</field>
+        <field name="model">gym.equipment</field>
+        <field name="arch" type="xml">
+            <form string="Gym Equipment">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="gym_equipment_action" model="ir.actions.act_window">
+        <field name="name">Gym Equipment</field>
+        <field name="res_model">gym.equipment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+    id="gym_equipment_menu"
+    name="Gym Equipment"
+    action="gym_equipment_action"
+    parent="configration_menu"
+   />
+</odoo>

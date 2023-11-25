@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="diet_food_view_tree" model="ir.ui.view">
+        <field name="name">diet_food.view.tree</field>
+        <field name="model">diet.food</field>
+        <field name="arch" type="xml">
+            <tree string="Diet Food">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+    <record id="diet_food_view_form" model="ir.ui.view">
+        <field name="name">diet_food.view.form</field>
+        <field name="model">diet.food</field>
+        <field name="arch" type="xml">
+            <form string="Diet Food">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                    </group>
+                </sheet>
+                  <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="diet_food_action" model="ir.actions.act_window">
+        <field name="name">Diet Food</field>
+        <field name="res_model">diet.food</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem
+    id="diet_food_menu"
+    name="Diet Food"
+    action="diet_food_action"
+    parent="configration_menu"
+   />
+</odoo>

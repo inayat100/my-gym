@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="invite_member_template" model="mail.template">
+            <field name="name">Invite Member for the Special Session</field>
+            <field name="model_id" ref="gym_management.model_special_session"/>
+            <field name="subject">Invite for the special session {{object.name}}</field>
+            <field name="partner_to">{{object.get_partner_ids(object.member_ids)}}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p>we are very pleased to announce that we have organized  session between <t t-out="object.start_at"/>  and <t t-out="object.end_at"/>
+                        <br/>
+                        details of session are as below
+                        we have arranged special session of <t t-out="object.name"/>
+                    </p>
+                    <spen>Thank You</spen>
+                </div>
+            </field>
+        </record>
+    </data>
+    <data>
+        <record id="invite_trainer_template" model="mail.template">
+            <field name="name">Invite Trainer for the Special Session</field>
+            <field name="model_id" ref="gym_management.model_special_session"/>
+            <field name="subject">Invite forthe special session {{object.name}}</field>
+            <field name="partner_to">{{object.get_partner_ids(object.trainer_ids)}}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                   
+                    <p>we are very pleased to announce that we have organized  session between <t t-out="object.start_at"/> and <t t-out="object.end_at"/>
+                        <br/>
+    details of session are as below
+    we have arranged special session of <t t-out="object.name"/>
+                    </p>
+                    <spen>Thank You</spen>
+                </div>
+            </field>
+        </record>
+    </data>
+
+<!-- this is cancel -->
+
+    <data>
+        <record id="cancel_session_template" model="mail.template">
+            <field name="name">cancel the Special Session</field>
+            <field name="model_id" ref="gym_management.model_special_session"/>
+            <field name="subject">postpone the special session {{object.name}}</field>
+            <field name="partner_to">{{object.cancel_ids(object.member_ids,object.trainer_ids)}}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p>this special session is postpone for some issues</p>
+                    <spen>Thank You</spen>
+                </div>
+            </field>
+        </record>
+    </data>
+
+</odoo>

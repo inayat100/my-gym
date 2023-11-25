@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="workout_plan_view_tree" model="ir.ui.view">
+        <field name="name">workout_plan.view.tree</field>
+        <field name="model">workout.plan</field>
+        <field name="arch" type="xml">
+            <tree string="Workout Plan">
+                <field name="name" />
+                <field name="workout_days_ids" widget="many2many_tags" />
+            </tree>
+        </field>
+    </record>
+    <record id="workout_plan_view_form" model="ir.ui.view">
+        <field name="name">workout_plan.view.form</field>
+        <field name="model">workout.plan</field>
+        <field name="arch" type="xml">
+            <form string="Workout Plan">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="workout_days_ids" widget="many2many_tags" />
+                    </group>
+                    <notebook>
+                        <page name="Exercise List" string="Exercise List">
+                            <field name="workout_plan_line">
+                                <tree editable="bottom">
+                                    <field name="exercise_id"></field>
+                                    <field name="body_part_id"></field>
+                                    <field name="equipment_id"></field>
+                                    <field name="sets"></field>
+                                    <field name="repeat"></field>
+                                    <field name="weight"></field>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+                  <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    
+    <record id="workout_plan_action" model="ir.actions.act_window">
+        <field name="name">Workout Plan</field>
+        <field name="res_model">workout.plan</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+        id="workout_plan_menu"
+        name="Workout Plan"
+        action="workout_plan_action"
+        parent="gym_workout_menu"/>
+</odoo>

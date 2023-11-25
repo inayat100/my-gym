@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="membership_view_tree" model="ir.ui.view">
+        <field name="name">membership.view.tree</field>
+        <field name="model">membership</field>
+        <field name="arch" type="xml">
+            <tree string="Membership">
+                <field name="name" />
+                <field name="number_of_month" />
+                <field name="fees" />
+                <field name="membership_product_id" />
+
+            </tree>
+        </field>
+    </record>
+    <record id="membership_view_form" model="ir.ui.view">
+        <field name="name">membership.view.form</field>
+        <field name="model">membership</field>
+        <field name="arch" type="xml">
+            <form string="Membership">
+                <sheet>
+                   <h1 style="width:300px"> <field name="name" /></h1>
+                    <group>
+                        <group>
+                            <field name="number_of_month" />
+                            <field name="fees" />
+                        </group>
+                        <group>
+                            <field name="membership_product_id" />
+
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="Details" string="Details">
+                            <field name="details" />
+                        </page>
+                    </notebook>
+                </sheet>
+                  <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="membership_view_search" model="ir.ui.view">
+        <field name="name">membership.view.search</field>
+        <field name="model">membership</field>
+        <field name="arch" type="xml">
+            <search string="Membership Search">
+                <field name="name"/>
+                <group string="Membership">
+                    <filter name="membership_product_id" string="Membership"  context="{'group_by':'membership_product_id'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+    
+    <record id="membership_action" model="ir.actions.act_window">
+        <field name="name">Membership</field>
+        <field name="res_model">membership</field>
+        <field name="view_mode">tree,form,search</field>
+    </record>
+
+
+
+<menuitem
+id="membership_menu2"
+name="Member ship"
+action="membership_action"
+parent="membership_menu"
+/>
+
+</odoo>

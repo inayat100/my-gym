@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="assign_diet_plan_view_form" model="ir.ui.view">
+        <field name="name">assign_diet_plan.view.form</field>
+        <field name="model">assign.diet.plan</field>
+        <field name="arch" type="xml">
+            <form string="Assign diet Plans">
+                <sheet>
+                    <group>
+                        <field name="member_ids" widget="many2many_tags" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+                        <field name="diet_plan_id" />
+                        <field name="from_date" />
+                        <field name="to_date" />
+                    </group>
+                </sheet>
+                <footer>
+                    <button type="object" name="assign_diet_plan" string="Assign" class="oe_highlight" icon="fa-file-text"/>
+                    <button special="cancel" string="Close Window"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="assign_diet_plan_action" model="ir.actions.act_window">
+        <field name="name">Assign Diet Plans</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">assign.diet.plan</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="gym_management.assign_diet_plan_view_form"/>
+        <field name="target">new</field>
+
+    </record>
+
+
+</odoo>

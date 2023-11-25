@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="assign_workout_plan_view_form" model="ir.ui.view">
+        <field name="name">assign_workout_plan.view.form</field>
+        <field name="model">assign.workout.plan</field>
+        <field name="arch" type="xml">
+            <form string="Assign Workout Plans">
+                <sheet>
+                    <group>
+                        <field name="member_ids" widget="many2many_tags"/>
+                        <field name="workout_plan_ids" widget="many2many_tags"/>
+                        <field name="from_date" />
+                        <field name="to_date" />
+                    </group>
+                </sheet>
+                <footer>
+                    <button type="object" name="assign_workout_plan" string="Assign" class="oe_highlight" icon="fa-file-text"/>
+                    <button special="cancel" string="Close Window"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="assign_workout_plan_action" model="ir.actions.act_window">
+        <field name="name">Assign Workoutplans</field>
+           <field name="type">ir.actions.act_window</field>
+        <field name="res_model">assign.workout.plan</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="gym_management.assign_workout_plan_view_form"/>
+        <field name="target">new</field>
+    </record>
+
+
+</odoo>

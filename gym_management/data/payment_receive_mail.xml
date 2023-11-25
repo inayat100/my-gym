@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="payment_receive_mail_template" model="mail.template">
+            <field name="name">Payment Receive Mail</field>
+            <field name="model_id" ref="account.model_account_move"/>
+            <field name="subject">Your Payment Receiced</field>
+            <field name="partner_to">{{object.partner_id.id}}</field>
+            <field name="report_name">{{object.partner_id.name}}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                   
+                  
+                    <p>hello dear</p> <t t-out="object.partner_id.name"/> 
+                    <br/>
+                    your payment received successfully<br/>
+                    your invoice number is <t t-out="object.name"/> <br/>
+
+
+                    <t t-foreach="object.invoice_line_ids" t-as="n">
+                        description  <t t-out="n.name"/>
+                        <br/>
+                        total amount is <t t-out="n.price_subtotal"/>
+                        <br/>
+                    </t>
+
+                    payment mode is <t t-out="object.payment_mode"/> <br/>
+                    your due date is <t t-out="object.due_method()['due_date']"/><br/>
+                    your due amount is <t t-out="object.due_method()['due_amount']" />
+                    
+
+                   
+                  
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

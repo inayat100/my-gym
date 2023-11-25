@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="exercise_view_tree" model="ir.ui.view">
+        <field name="name">exercise.view.tree</field>
+        <field name="model">exercise</field>
+        <field name="arch" type="xml">
+            <tree string="Exercise">
+                <field name="name" />
+                <field name="body_part_id" />
+                <field name="equipment_id" />
+            </tree>
+        </field>
+    </record>
+    <record id="exercise_view_form" model="ir.ui.view">
+        <field name="name">exercise.view.form</field>
+        <field name="model">exercise</field>
+        <field name="arch" type="xml">
+            <form string="Exercise">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="body_part_id" />
+                        <field name="equipment_id" />
+                    </group>
+                    <notebook>
+                        <page name="Steps" string="Steps">
+                            <field name="steps" />
+                        </page>
+                        <page name="Benefits" string="Benefits">
+                            <field name="benefits" />
+                        </page>
+                    </notebook>
+                </sheet>
+                  <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="exercise_view_search" model="ir.ui.view">
+        <field name="name">exercise.view.search</field>
+        <field name="model">exercise</field>
+        <field name="arch" type="xml">
+            <search string="exercise Search">
+                <group string="User">
+                    <filter name="body_part_id" string="Body Part"  context="{'group_by':'body_part_id'}" />
+                    <filter name="equipment_id" string="Equipment"  context="{'group_by':'equipment_id'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="exercise_action" model="ir.actions.act_window">
+        <field name="name">Exercise</field>
+        <field name="res_model">exercise</field>
+        <field name="view_mode">tree,form,search</field>
+    </record>
+
+
+    
+    <menuitem
+    id="exercise_menu"
+    name="Exercise"
+    action="exercise_action"
+    parent="gym_workout_menu"
+   />
+</odoo>

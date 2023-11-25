@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="member_join_mail_template" model="mail.template">
+            <field name="name">join member</field>
+            <field name="model_id" ref="gym_management.model_member"/>
+            <field name="subject">Thank you {{object.name}} for join us as a member </field>
+            <field name="partner_to">{{object.partner_id.id}}</field>
+            <field name="report_name">{{object.name}}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                  
+                    <p>hello dear</p> <t t-out="object.name"/>
+                    <br/>
+                 
+                     your member id is <t t-out="object.sequence_no"/>
+                    <br/>
+
+                     your membership is <t t-out="object.membership_id.name"/> and fees is <t t-out="object.fee"/>
+                    <br/>
+
+                     join date is <t t-out="object.join_date"/> and end date is <t t-out="object.end_date"/>
+                    <br/>
+
+                     your trainer is  <t t-out="object.trainer_id.name"/>
+
+                     <br/>
+                    thank your dear <t t-out="object.name"/>
+                </div>
+            </field>
+        </record>
+    </data>
+    <data>
+        <record id="trainer_to_member_mail_template" model="mail.template">
+            <field name="name">assign trainer to member</field>
+            <field name="model_id" ref="gym_management.model_member"/>
+            <field name="subject">dear trainer Assign yor new member {{object.name}}</field>
+            <field name="partner_to">{{object.trainer_id.partner_id.id}}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+        
+                    <p>hello dear</p> <t t-out="object.trainer_id.name"/>
+                    <br/>
+                 
+                    Assign you a new member <t t-out="object.name"/> <br/>
+                    <t t-out="object.name"/> have  <t t-out="object.membership_id.name"/> membership
+                    and it's join date is <t t-out="object.join_date"/>  and end date is  <t t-out="object.end_date"/> 
+                    <br/>
+                    thank your dear <t t-out="object.trainer_id.name"/> 
+
+                </div>
+            </field>
+        </record>
+    </data>
+    <data>
+        <record id="trainer_join_mail_template" model="mail.template">
+            <field name="name">join trainer</field>
+            <field name="model_id" ref="gym_management.model_trainer"/>
+            <field name="subject">Thank you {{object.name}} for join us as a trainer </field>
+            <field name="partner_to">{{object.partner_id.id}}</field>
+            <field name="report_name">{{object.name}}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                  
+                    <p>hello dear</p> <t t-out="object.name"/> 
+                    <br/>
+            
+                    your trainer id is <t t-out="object.sequence_no"/> <br/>
+                    your join date is <t t-out="object.join_date"/> <br/>
+                    your skills is : <br/>
+
+                    <t t-foreach="object.skills" t-as="s">
+                        <t t-out="s.name"/>
+                        <br/>
+                    </t>
+                  
+                      
+
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>

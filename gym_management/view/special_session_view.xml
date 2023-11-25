@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="special_session_view_tree" model="ir.ui.view">
+        <field name="name">special_session.view.tree</field>
+        <field name="model">special.session</field>
+        <field name="arch" type="xml">
+            <tree string="Special Session">
+                <field name="name" />
+                <field name="start_at" />
+                <field name="end_at" />
+                <field name="member_ids" widget="many2many_tags"/>
+                <field name="trainer_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="special_Session_view_form" model="ir.ui.view">
+        <field name="name">special_Session.view.form</field>
+        <field name="model">special.session</field>
+        <field name="arch" type="xml">
+            <form string="Special Session">
+                <header>
+                    <button string="Invite Atendees" name="invite_attendees" type="object" class="oe_highlight" attrs="{'invisible':['|','|',('status','=','invitation_sent'),('status','=','done_successfully'),('status','=','canceld')]}" />
+                    <button string="Done" name="done" type="object" class="oe_highlight" attrs="{'invisible':['|','|',('status','=','pending'),('status','=','done_successfully'),('status','=','canceld')]}" />
+                    <button string="cancel" name="cancel" type="object" attrs="{'invisible':['|','|',('status','=','pending'),('status','=','done_successfully'),('status','=','canceld')]}" />
+                    <button string="Back to panding" name="back_to_panding" type="object" attrs="{'invisible':['|','|',('status','=','pending'),('status','=','done_successfully'),('status','=','invitation_sent')]}" />
+                    <field name="status" widget="statusbar" />
+                </header>
+                <sheet>
+                    <h1 style="width:500px"><field name="name" /></h1>
+                    <group>
+                        <group>
+                            <separator string="Durations"/>
+                            <field name="start_at" />
+                            <field name="end_at" />
+                        </group>
+                        <group>
+                            <separator string="Attendees"/>
+                            <field name="member_ids" widget="many2many_tags"/>
+                            <field name="trainer_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="Description" string="Description">
+                            <field name="description" />
+                        </page>
+                        <page name="cancel Session" string="cancel Session" attrs="{'invisible':[('cancel_bool','=',False)]}">
+                            <field name="cancel_bool" invisible="1"/>
+                            <field name="cancel_resion"/>
+                        </page>
+                    </notebook>
+                </sheet>
+                  <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="special_Session_action" model="ir.actions.act_window">
+        <field name="name">Special Session</field>
+        <field name="res_model">special.session</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+    id="special_session_submenu"
+    name="Special Session"
+    action="special_Session_action"
+    parent="special_session_menu"/>
+</odoo>

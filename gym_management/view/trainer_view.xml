@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="trainer_view_tree" model="ir.ui.view">
+        <field name="name">trainer.view.tree</field>
+        <field name="model">trainer</field>
+        <field name="arch" type="xml">
+            <tree string="trainer">
+                <field name="name" />
+                <field name="sequence_no" />
+                <field name="partner_id"/>
+               <field name="gender" />
+               <field name="age" />
+               <field name="join_date" />
+               <field name="status"/>
+            </tree>
+        </field>
+    </record>
+    <record id="trainer_view_form" model="ir.ui.view">
+        <field name="name">trainer.view.form</field>
+        <field name="model">trainer</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <header>
+                    <button string="Trainer Left" name="trainer_left"
+                        type="object" class="oe_highlight" attrs="{'invisible':[('status','=','left')]}"/>
+                    <button string="Trainer Join" name="trainer_join"
+                        type="object" class="oe_highlight" attrs="{'invisible':[('status','=','joined')]}"/>
+                        <field name="is_employee" invisible="1" />
+                    <button string="Create Employee" name="creat_employee"
+                        type="object" attrs="{'invisible':['|',('is_employee','=',True),('id','=',False)]}"/>
+                    <field name="status" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button type="object" name="trainer_info" string="Employee" class="oe_stat_button" icon="fa-check"
+                        attrs="{'invisible':[('is_employee','=',False)]}"/>
+                    </div>
+
+                    <field name="image" class="oe_avatar"  style="width: 100px;" widget="image" />
+                    
+                   <h1 style="width:500px;"> <field name="name" placeholder="Name" required="1"/></h1>
+                    <field name="email" style="width:500px;" placeholder="example@gmail.com" required="1" />
+                    
+                    <group>
+                        <group>
+                            <field name="sequence_no" />
+                            <field name="partner_id" readonly="1" />
+
+                            <span class="o_td_label">
+                                <b >Address</b>
+                            </span>
+
+                            <div class="o_address_format">
+                                <field name="street" placeholder="Street..." class="o_address_street" />
+                                <field name="city" placeholder="City" class="o_address_city" />
+                                <field name="state_id" class="o_address_state" placeholder="State"/>
+                                <field name="zip" placeholder="ZIP" class="o_address_zip" />
+                                <field name="country_id" placeholder="Country" class="o_address_country" />
+                            </div>
+
+                            <field name="phone" />                    
+                        </group>
+                        <group>
+                            <field name="gender" />
+                            <field name="dob" />
+                            <field name="age" />
+                            <field name="skills" widget="many2many_tags"/>
+                            <field name="join_date" />
+                            <field name="active" readonly="1" />
+                        </group>
+                    </group>
+                </sheet>
+                  <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    <record id="trainer_view_kanban" model="ir.ui.view">
+        <field name="name">trainer.view.kanban</field>
+        <field name="model">trainer</field>
+        <field name="arch" type="xml">
+            <kanban string="Trainer View" class="o_ares_partner_kanban">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div style="width:30%; float:left;">
+                                <field name="image" widget="image" style="width: 100px;"/>
+                            </div>
+                            <div style="width:70%; float:right;">
+                                <ul style="list-style-type:none">
+                                    <li>
+                                        <field name="sequence_no"/>
+                                    </li>
+                                    <li>
+                                        <field name="name" />
+                                    </li>
+                                    <li>
+                                        <field name="gender" />
+                                    </li>
+                                    <li>
+                                        <field name="join_date" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="trainer_view_search" model="ir.ui.view">
+        <field name="name">trainer.view.search</field>
+        <field name="model">trainer</field>
+        <field name="arch" type="xml">
+            <search string="Trainer Search">
+                <filter name="status" string="Waiting" domain="[('status','=','waiting')]"/>
+                <filter name="status" string="Joined" domain="[('status','=','joined')]"/>
+                <filter name="status" string="Left" domain="[('status','=','left')]"/>
+                <group string="User">
+                    <filter name="partner_id" string="User"  context="{'group_by':'partner_id'}" />
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="trainer_action" model="ir.actions.act_window">
+        <field name="name">Trainer</field>
+        <field name="res_model">trainer</field>
+        <field name="view_mode">kanban,tree,form,search</field>
+    </record>
+
+    <record id="trainer_attendance_action" model="ir.actions.act_window">
+        <field name="name">Trainer Attendance</field>
+        <field name="res_model">hr.attendance</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('employee_id.user_id.partner_id.is_trainer', '=', True)]</field>
+    </record>
+  
+    <menuitem
+    id="trainer_menu"
+    name="Trainer"
+    action="trainer_action"
+    parent="gym_member_menu"/>
+
+    <menuitem
+    id="trainer_attendance_menu"
+    name="Trainer Attendance"
+    action="trainer_attendance_action"
+    parent="attendance_menu"/>
+</odoo>
