@@ -11,6 +11,6 @@ class cancelResion(models.TransientModel):
                 'status': 'canceld',
                 'cancel_bool':True,
             })
-            template_cancel = self.env.ref('gym_management.cancel_session_template')
+            template_cancel = self.env.ref('gym_management_ir.cancel_session_template')
             template_cancel.send_mail(obj.id)
     name = fields.Text("cancel Resion")

@@ -14,7 +14,7 @@ class PaymentReceiveMail(models.TransientModel):
                 am.update({
                     'payment_mode':this.journal_id.name
                 })
-                template_payment = self.env.ref('gym_management.payment_receive_mail_template')
+                template_payment = self.env.ref('gym_management_ir.payment_receive_mail_template')
                 template_payment.send_mail(am.id)
         return res
 

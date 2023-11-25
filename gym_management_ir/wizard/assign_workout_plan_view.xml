@@ -26,7 +26,7 @@
            <field name="type">ir.actions.act_window</field>
         <field name="res_model">assign.workout.plan</field>
         <field name="view_mode">form</field>
-        <field name="view_id" ref="gym_management.assign_workout_plan_view_form"/>
+        <field name="view_id" ref="gym_management_ir.assign_workout_plan_view_form"/>
         <field name="target">new</field>
     </record>
 

@@ -17,7 +17,7 @@ class AssignDietPlan(models.TransientModel):
                     'from_date':self.from_date,
                     'to_date':self.to_date,
                 })
-        template_diet = self.env.ref('gym_management.diet_mail_template')
+        template_diet = self.env.ref('gym_management_ir.diet_mail_template')
         template_diet.send_mail(self.id)
 
     

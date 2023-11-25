@@ -8,17 +8,17 @@
 
     <record id="manager_group_id" model="res.groups">
         <field name="name">Manager</field>
-        <field name="category_id" ref="gym_management.user_role_group"></field> 
+        <field name="category_id" ref="gym_management_ir.user_role_group"></field> 
     </record>
 
     <record id="member_group_id" model="res.groups">
         <field name="name">Member</field>
-        <field name="category_id" ref="gym_management.user_role_group"></field> 
+        <field name="category_id" ref="gym_management_ir.user_role_group"></field> 
     </record>
 
     <record id="trainer_group_id" model="res.groups">
         <field name="name">Trainer</field>
-        <field name="category_id" ref="gym_management.user_role_group"></field> 
+        <field name="category_id" ref="gym_management_ir.user_role_group"></field> 
     </record>
     
 </odoo>

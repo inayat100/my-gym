@@ -16,7 +16,7 @@
     name="GymWorkout"
     parent="gym_management_menu"
     sequence="3"
-    groups="gym_management.manager_group_id"/>
+    groups="gym_management_ir.manager_group_id"/>
 
     <menuitem
     id="diet_menu"
@@ -79,12 +79,12 @@
         <menuitem
         id="member_menu"
         name="Member"
-        action="gym_management.member_action"
-        parent="gym_management.gym_member_menu" />
+        action="gym_management_ir.member_action"
+        parent="gym_management_ir.gym_member_menu" />
 
         <menuitem
         id="member_attendance_menu"
         name="Member Attendance"
-        action="gym_management.member_attendance_action"
-        parent="gym_management.attendance_menu"/>
+        action="gym_management_ir.member_attendance_action"
+        parent="gym_management_ir.attendance_menu"/>
 </odoo>

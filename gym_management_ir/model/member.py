@@ -166,10 +166,10 @@ class Member(models.Model):
         for this in self:
             this.active = True
             if this.join_date:
-                template_member = self.env.ref('gym_management.member_join_mail_template')
+                template_member = self.env.ref('gym_management_ir.member_join_mail_template')
                 template_member.send_mail(this.id)
                 if this.trainer_id:
-                    template_trainer_to_member = self.env.ref('gym_management.trainer_to_member_mail_template')
+                    template_trainer_to_member = self.env.ref('gym_management_ir.trainer_to_member_mail_template')
                     template_trainer_to_member.send_mail(this.id)
                 user_id = self.env['res.users'].browse(this.user_id.id)
                 partner_id = self.env['res.partner'].browse(this.partner_id.id)
@@ -203,11 +203,11 @@ class Member(models.Model):
         new_membership = self.env['member'].search([('end_date','=',last_date)])
         if due_date:
             for p in due_date:
-                template_due_date = self.env.ref('gym_management.due_amount_mail_template')
+                template_due_date = self.env.ref('gym_management_ir.due_amount_mail_template')
                 template_due_date.send_mail(p.id)
         if new_membership:
             for n in new_membership:
-                template_new_membership = self.env.ref('gym_management.new_membership_mail_template')
+                template_new_membership = self.env.ref('gym_management_ir.new_membership_mail_template')
                 template_new_membership.send_mail(n.id)
 
 

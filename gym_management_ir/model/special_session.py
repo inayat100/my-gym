@@ -34,8 +34,8 @@ class SpecialSession(models.Model):
         return str([ids]).replace('[', '').replace(']', '')
 
     def invite_attendees(self):
-        template_member = self.env.ref('gym_management.invite_member_template')
-        template_trainer = self.env.ref('gym_management.invite_trainer_template')
+        template_member = self.env.ref('gym_management_ir.invite_member_template')
+        template_trainer = self.env.ref('gym_management_ir.invite_trainer_template')
         if self.member_ids:
             template_member.send_mail(self.id)
         if self.trainer_ids:

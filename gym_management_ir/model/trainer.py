@@ -102,7 +102,7 @@ class Trainer(models.Model):
         for this in self:
             self.active = True
             if this.join_date:
-                template_trainer = self.env.ref('gym_management.trainer_join_mail_template')
+                template_trainer = self.env.ref('gym_management_ir.trainer_join_mail_template')
                 template_trainer.send_mail(this.id)
                 user_id = self.env['res.users'].browse(this.user_id.id)
                 partner_id = self.env['res.partner'].browse(this.partner_id.id)
